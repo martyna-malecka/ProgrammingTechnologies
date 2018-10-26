@@ -8,22 +8,22 @@ namespace VideoRental
 {
     class Program
     {
-        private TapeCatalog tapes = new TapeCatalog();
+        private VideoCatalog videos = new VideoCatalog();
         private ClientCatalog clients = new ClientCatalog();
         private RentalCatalog rentals = new RentalCatalog();
 
 
-        void Rent(Tape tape, Client client)
+        void Rent(IVideo video, Client client)
         {
             Rental rental = new Rental();
 
             rentals.Add(rental);
-            tape.SetStatus(false);
+            video.SetStatus(false);
         }
 
         void Return(Rental rental)
         {
-            rental.GetTape().SetStatus(true);
+            rental.GetVideo().SetStatus(true);
 
             if(DateTime.Today > rental.GetDueDate()) //if overtime
             {
@@ -34,16 +34,6 @@ namespace VideoRental
             {
                 rental.SetStatus(true);
             }
-        }
-
-        void AddTape(String title, String director, String genre, int year)
-        {
-            tapes.Add(new Tape(year, title, director, genre));
-        }
-
-        void AddClient(String name, String surname)
-        {
-            clients.Add(new Client(name, surname));
         }
 
         List<Client> GetClientsInDebt()
@@ -59,17 +49,17 @@ namespace VideoRental
             return clientsInDebt;
         }
 
-        List<Tape> GetAvailableTapes()
+        List<IVideo> GetAvailableVideos()
         {
-            List<Tape> availableTapes = new List<Tape>();
-            foreach(Tape tape in tapes)
+            List<IVideo> availableVideos = new List<IVideo>();
+            foreach(IVideo video in videos)
             {
-                if(tape.GetStatus() == true)
+                if(video.GetStatus() == true)
                 {
-                    availableTapes.Add(tape);
+                    availableVideos.Add(video);
                 }
             }
-            return availableTapes;
+            return availableVideos;
         }
 
         List<Rental> GetCurrentRentals()

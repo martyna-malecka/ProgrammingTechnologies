@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace VideoRental
 {
 
-    class Client
+    class Client 
     {
         private String name;
         private String surname;

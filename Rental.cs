@@ -9,7 +9,7 @@ namespace VideoRental
     class Rental
     {
         private Client client;
-        private Tape rentedTape;
+        private IVideo rentedVideo;
         private String id;
         private bool returned;
         private DateTime rentDate;
@@ -20,10 +20,10 @@ namespace VideoRental
 
         }
 
-        public Rental(Client _client, Tape _rentedTape)
+        public Rental(Client _client, IVideo _rentedVideo)
         {
             client = _client;
-            rentedTape = _rentedTape;
+            rentedVideo = _rentedVideo;
             id = Guid.NewGuid().ToString();
             returned = false;
             rentDate = DateTime.Today;
@@ -35,9 +35,9 @@ namespace VideoRental
             return client;
         }
 
-        public Tape GetTape()
+        public IVideo GetVideo()
         {
-            return rentedTape;
+            return rentedVideo;
         }
 
         public String GetID()

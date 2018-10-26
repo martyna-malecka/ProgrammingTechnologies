@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoRental
 {
-    class Tape : IVideo
+    class DVD : IVideo
     {
         private int year;
         private String title;
@@ -15,12 +15,12 @@ namespace VideoRental
         private String id;
         private bool available;
 
-        public Tape()
+        public DVD()
         {
 
         }
 
-        public Tape(int _year, String _title, String _director, String _genre)
+        public DVD(int _year, String _title, String _director, String _genre)
         {
             year = _year;
             title = _title;

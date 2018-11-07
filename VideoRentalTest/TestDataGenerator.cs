@@ -19,14 +19,14 @@ namespace VideoRentalTest{
             surname = _surname;
             id = Guid.NewGuid().ToString();
             debt = 0;
-			for int i=0; i<5; i++){
-				_rentedVideo.Add(new IVideo(){
-					year = _year;
-					title = _title;
-					director = _director;
-					genre = _genre;
-					id = Guid.NewGuid().ToString();
-					available = true;
+				for (int i=0; i<5; i++){
+					_rentedVideo.Add(new IVideo(){
+						year = _year;
+						title = _title;
+						director = _director;
+						genre = _genre;
+						id = Guid.NewGuid().ToString();
+						available = true;
 				}
 		};
 		

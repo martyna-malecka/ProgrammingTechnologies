@@ -33,18 +33,27 @@ namespace VideoRental
             }
         }
 
-        public void Return(Rental rental)
+        public bool Return(Rental rental)
         {
-            if(DateTime.Today > rental.GetDueDate())                                            //if due date has passed
+            if (rental.GetVideo().GetStatus() == true)
             {
-                rental.GetClient().SetDebt((DateTime.Today - rental.GetDueDate()).TotalDays);   //add 1 for each day there is now after duedate
-                rental.GetVideo().SetStatus(true);                                              //make video available again
-                rental.SetStatus(true);                                                         //make rental finished(returned)
+                return false;
             }
             else
             {
-                rental.GetVideo().SetStatus(true);                                              //make video available again
-                rental.SetStatus(true);                                                         //make rental finished(video returned)
+                if (DateTime.Today > rental.GetDueDate())                                            //if due date has passed
+                {
+                    rental.GetClient().SetDebt((DateTime.Today - rental.GetDueDate()).TotalDays);   //add 1 for each day there is now after duedate
+                    rental.GetVideo().SetStatus(true);                                              //make video available again
+                    rental.SetStatus(true);                                                         //make rental finished(returned)
+                    return true;
+                }
+                else
+                {
+                    rental.GetVideo().SetStatus(true);                                              //make video available again
+                    rental.SetStatus(true);                                                         //make rental finished(video returned)
+                    return true;
+                }
             }
         }
 

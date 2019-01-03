@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="VideoRental" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ABYSS;Initial Catalog=VideoRental;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="VideoRentalData.Properties.Settings" SettingsPropertyName="VideoRentalConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.client" Member="client">
+    <Type Name="client">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="debt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="client_rental" Member="rental" ThisKey="id" OtherKey="clientId" Type="rental" />
+    </Type>
+  </Table>
+  <Table Name="dbo.video" Member="video">
+    <Type Name="video">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="genre" Type="System.String" DbType="Char(20) NOT NULL" CanBeNull="false" />
+      <Column Name="director" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="medium" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="available" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="video_rental" Member="rental" ThisKey="id" OtherKey="videoId" Type="rental" />
+    </Type>
+  </Table>
+  <Table Name="dbo.rental" Member="rental">
+    <Type Name="rental">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="clientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="videoId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rentDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="dueDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="returned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="client_rental" Member="client" ThisKey="clientId" OtherKey="id" Type="client" IsForeignKey="true" />
+      <Association Name="video_rental" Member="video" ThisKey="videoId" OtherKey="id" Type="video" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

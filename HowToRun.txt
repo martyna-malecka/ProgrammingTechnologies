@@ -1,0 +1,9 @@
+In order to have the program work correctly, a database which corresponds 
+to DB.png image needs to be created with all columns having NOT NULL constraint. 
+
+The database should be then connected to the VideoRentalData project either by changing
+the value of 'Name' variable in DataClasses.designer.cs file or a whole new DataClasses.dbml LINQ to SQL class
+should be created inside the VideoRentalData project and the database tables should then be dragged and dropped
+into the layout (the second approach is recommended).
+
+All tables must contain at least one entry for the program to work correctly.
